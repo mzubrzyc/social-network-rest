@@ -40,4 +40,22 @@ public class ControllerDtoMapper {
                        .toList();
     }
 
+    public static UserDto toUserDto(User user) {
+        return new UserDto(user.getUserId(),
+                           user.getLogin(),
+                           user.getName(),
+                           user.getSurname(),
+                           user.getNick(),
+                           user.getCreationDate()
+        );
+    }
+
+    public static User toUsr(UserDto userDto) {
+        return new User(userDto.getUserId(),
+                        userDto.getLogin(),
+                        userDto.getName(),
+                        userDto.getSurname(),
+                        userDto.getNick()
+        );
+    }
 }

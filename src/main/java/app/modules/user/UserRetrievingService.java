@@ -22,4 +22,8 @@ class UserRetrievingService {
     public List<User> getUsersByIds(List<Long> distinctUserIds) {
         return userRetrievingPort.getUsersByIds(distinctUserIds);
     }
+
+    public Optional<User> getUserById(long userId) {
+        return userRetrievingPort.getUserById(userId);
+    }
 }

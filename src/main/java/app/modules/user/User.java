@@ -21,6 +21,21 @@ public class User {
     private LocalDate creationDate;
     private List<UserPost> userPosts;
 
+    public User(Long userId,
+                String login,
+                String name,
+                String surname,
+                String nick
+    ) {
+        this(userId,
+             login,
+             name,
+             surname,
+             nick,
+             LocalDate.now(),
+             Collections.emptyList());
+    }
+
     public User(String login,
                 String name,
                 String surname,

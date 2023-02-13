@@ -49,7 +49,7 @@ class PostsControllerTest {
 
     @Test
     @SneakyThrows
-    @DisplayName("Endpoint '/rank/max/10' should return 10 max viewed posts")
+    @DisplayName("Endpoint '/posts/rank/max/10' should return 10 max viewed posts")
     void getTenPostsWithHighestViewCount() {
         // given: random 11 users, random posts
         RestTemplate restTemplate = new RestTemplate();
@@ -57,9 +57,10 @@ class PostsControllerTest {
         List<User> generatedUsers = UserGenerator.generateUsers(11);
         List<UserEntity> userEntities = jpaUserFixture.saveUsers(UserEntityMapper.toUserEntity(generatedUsers));
         List<Post> generatedPosts = PostGenerator.generatePostsForUsers(userEntities);
-        List<PostEntity> postEntitiesSaved = jpaPostFixture.savePosts(PostEntityMapper.toPostEntity(generatedPosts));
+        jpaPostFixture.savePosts(PostEntityMapper.toPostEntity(generatedPosts));
         // when:
         ResponseEntity<MostViewedPostsDto> responseEntity = restTemplate.getForEntity(baseUrlWithPort + "/posts/rank/max/10", MostViewedPostsDto.class);
+        // then:
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         MostViewedPostsDto body = responseEntity.getBody();
         assertThat(body).isNotNull();

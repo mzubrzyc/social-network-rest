@@ -1,6 +1,7 @@
 package app.modules.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.from;
 
 import app.dto.UserLoginPostContentDto;
 import app.fixter.user.JpaUserFixture;
@@ -90,6 +91,33 @@ class UserFacadeTest {
         List<User> usersByIds = userFacade.getUsersByIds(userEntities.stream().map(UserEntity::getUserId).toList());
         // then:
         assertThat(usersByIds).hasSameSizeAs(userEntities);
+    }
+
+    @Test
+    @SneakyThrows
+    @DisplayName("User updated in database")
+    void updateUser() {
+        // given:
+        User userOne = new User("userOneLogin",
+                                "userOneName",
+                                "userOneSurname",
+                                "userOneNick");
+        UserEntity userOneEntity = jpaUserFixture.saveUser(UserEntityMapper.toUserEntity(userOne));
+        User userOneUpdate = new User(
+            userOneEntity.getUserId(),
+            userOneEntity.getLogin(),
+            userOneEntity.getName() + "Update",
+            userOneEntity.getSurname() + "Update",
+            userOneEntity.getNick() + "Update"
+        );
+        // when:
+        userFacade.updateUser(userOneUpdate);
+        // then:
+        User userOneUpdated = userFacade.getUserByLogin("userOneLogin").orElse(null);
+        assertThat(userOneUpdated)
+            .returns(userOneUpdate.getName(), from(User::getName))
+            .returns(userOneUpdate.getSurname(), from(User::getSurname))
+            .returns(userOneUpdate.getNick(), from(User::getNick));
     }
 
 }

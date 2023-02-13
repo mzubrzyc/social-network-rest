@@ -33,4 +33,22 @@ class UserModificationService {
             throw new Exception("User of login: " + user.getLogin() + " does NOT exist in database");
         }
     }
+
+    public void deleteUserById(Optional<User> optionalExistingUser, long userId) throws Exception {
+        User user = optionalExistingUser
+            .orElseThrow(() -> new Exception("Can't delete the. User of id: " + userId + " does NOT exist in database"));
+        throwExceptionIfUserDoesNotExistInDb(optionalExistingUser, userId);
+        userModificationPort.deleteUser(user);
+    }
+
+    private void throwExceptionIfUserDoesNotExistInDb(Optional<User> optionalExistingUser, long userId) throws Exception {
+        if (optionalExistingUser.isEmpty()) {
+            throw new Exception("Can't delete the. User of id: " + userId + " does NOT exist in database");
+        }
+    }
+
+    public void updateUser(Optional<User> optionalExisting, User user) throws Exception {
+        throwExceptionIfUserDoesNotExistInDb(optionalExisting, user);
+        userModificationPort.updateUser(user);
+    }
 }

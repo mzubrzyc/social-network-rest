@@ -26,4 +26,10 @@ public class JpaUserRetrievingAdapter implements UserRetrievingPort {
     public List<User> getUsersByIds(List<Long> distinctUserIds) {
         return UserEntityMapper.fromUserEntity(jpaUserRepository.findAllByUserIdIn(distinctUserIds));
     }
+
+    @Override
+    public Optional<User> getUserById(long userId) {
+        Optional<UserEntity> userEntityByUserId = jpaUserRepository.findUserEntityByUserId(userId);
+        return userEntityByUserId.map(UserEntityMapper::fromUserEntity);
+    }
 }

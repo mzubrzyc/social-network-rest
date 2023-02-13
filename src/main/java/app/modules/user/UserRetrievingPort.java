@@ -10,4 +10,6 @@ public interface UserRetrievingPort {
     Optional<User> getUserByLogin(String login);
 
     List<User> getUsersByIds(List<Long> distinctUserIds);
+
+    Optional<User> getUserById(long userId);
 }

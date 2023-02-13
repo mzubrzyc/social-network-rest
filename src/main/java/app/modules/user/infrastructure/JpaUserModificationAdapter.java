@@ -16,7 +16,12 @@ public class JpaUserModificationAdapter implements UserModificationPort {
 
     @Override
     public void updateUser(User user) throws Exception {
-
+        jpaUserRepository.updateUser(
+            user.getUserId(),
+            user.getName(),
+            user.getSurname(),
+            user.getNick()
+        );
     }
 
     @Override
