@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "users")
@@ -31,7 +32,7 @@ public class UserEntity {
     @GeneratedValue(generator = "user_id_seq", strategy = GenerationType.SEQUENCE)
     @Column(name = "user_id")
     private Long userId;
-    @Column(name = "login", columnDefinition = "varchar(26) unique not null")
+    @Column(name = "login", columnDefinition = "varchar(26) not null unique")
     private String login;
     @Column(name = "name", nullable = false)
     private String name;
@@ -43,6 +44,7 @@ public class UserEntity {
     private LocalDate creationDate;
 
     @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @BatchSize(size = 100)
     private List<PostEntity> postEntityList;
 
     public UserEntity(

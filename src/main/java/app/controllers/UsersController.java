@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,13 +38,13 @@ public class UsersController {
         return new ResponseEntity<>(ControllerDtoMapper.toUserDto(userFacade.getAllUsers()), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/save", consumes={MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(path = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<HttpStatus> saveUser(@RequestBody UserDto userDto) throws Exception {
         userFacade.saveNewUser(ControllerDtoMapper.toUsr(userDto));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update", consumes={MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(path = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<HttpStatus> updateUser(@RequestBody UserDto userDto) throws Exception {
         userFacade.updateUser(ControllerDtoMapper.toUsr(userDto));
         return new ResponseEntity<>(HttpStatus.OK);

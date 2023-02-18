@@ -128,7 +128,6 @@ class UsersControllerTest {
             userEntitySaved.getNick() + "Update"
         );
         String userDtoUpdateJson = objectMapper.writeValueAsString(userOneUpdate);
-        System.out.println("userDtoUpdateJson: " + userDtoUpdateJson);
         // when:
         mockMvc.perform(
                    put(UPDATE_URL)

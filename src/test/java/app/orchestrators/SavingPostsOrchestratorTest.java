@@ -1,5 +1,7 @@
 package app.orchestrators;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import app.dto.UserLoginPostContentDto;
 import app.fixter.user.JpaUserFixture;
 import app.modules.user.User;
@@ -10,7 +12,6 @@ import app.testconfig.IntegrationTest;
 import app.utils.TableEraser;
 import java.util.List;
 import lombok.SneakyThrows;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,7 +49,7 @@ class SavingPostsOrchestratorTest {
         savingPostsOrchestrator.savePostForUser(userOnePostDto);
         // then:
         List<Post> allPosts = postFacade.getAllPosts();
-        Assertions.assertThat(allPosts).hasSize(1);
+        assertThat(allPosts).hasSize(1);
     }
 
 }

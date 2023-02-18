@@ -46,7 +46,7 @@ class PostFacadeTest {
     @SneakyThrows
     void getMostViewedPostsLimitResultsTo() {
         // given: random 11 users, random posts
-        List<User> generatedUsers = UserGenerator.generateUsers(11);
+        List<User> generatedUsers = UserGenerator.generateUsers(1100);
         List<UserEntity> userEntities = jpaUserFixture.saveUsers(UserEntityMapper.toUserEntity(generatedUsers));
         List<Post> generatedPosts = PostGenerator.generatePostsForUsers(userEntities);
         List<PostEntity> postEntitiesGeneratedFromPosts = PostEntityMapper.toPostEntity(generatedPosts);
@@ -55,7 +55,10 @@ class PostFacadeTest {
         List<Post> mostViewedPostsFromDb = postFacade.getMostViewedPostsLimitTo(10);
         // then:
         List<PostEntity> tenMostViedPosts = postEntitiesSaved.stream()
-                                                             .sorted(Comparator.comparing(PostEntity::getPostViews).reversed())
+                                                             .sorted(
+                                                                 Comparator.comparing(PostEntity::getPostViews)
+                                                                           .reversed()
+                                                                           .thenComparing(PostEntity::getPostId))
                                                              .limit(10)
                                                              .toList();
         assertThat(mostViewedPostsFromDb)
