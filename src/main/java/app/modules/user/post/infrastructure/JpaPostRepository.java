@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface JpaPostRepository extends JpaRepository<PostEntity, Long> {
 
-    @Query(value = "select * from posts order by post_views desc, post_id", nativeQuery = true)
+    @Query(value = "FROM PostEntity p order by p.postViews desc, p.postId")
     List<PostEntity> findPostsWithMostViewsLimitedTo(Pageable pageable);
 
 }
