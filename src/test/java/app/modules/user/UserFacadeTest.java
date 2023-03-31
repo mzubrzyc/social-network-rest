@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.from;
 
 import app.dto.UserLoginPostContentDto;
-import app.fixter.user.JpaUserFixture;
-import app.fixter.user.UserGenerator;
+import app.fixture.user.JpaUserFixture;
+import app.fixture.user.UserGenerator;
 import app.modules.user.infrastructure.UserEntity;
 import app.modules.user.infrastructure.UserEntityMapper;
 import app.modules.user.post.domain.Post;

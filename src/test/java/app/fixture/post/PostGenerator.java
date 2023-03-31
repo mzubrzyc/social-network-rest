@@ -1,4 +1,4 @@
-package app.fixter.post;
+package app.fixture.post;
 
 import app.modules.user.infrastructure.UserEntity;
 import app.modules.user.post.domain.Post;

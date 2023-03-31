@@ -1,7 +1,7 @@
 package app.testconfig;
 
-import app.fixter.post.JpaPostFixture;
-import app.fixter.user.JpaUserFixture;
+import app.fixture.post.JpaPostFixture;
+import app.fixture.user.JpaUserFixture;
 import app.utils.TableEraser;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

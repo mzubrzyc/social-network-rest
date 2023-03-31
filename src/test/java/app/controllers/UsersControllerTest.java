@@ -6,10 +6,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import app.dto.UserDto;
-import app.fixter.post.JpaPostFixture;
-import app.fixter.post.PostGenerator;
-import app.fixter.user.JpaUserFixture;
-import app.fixter.user.UserGenerator;
+import app.fixture.post.JpaPostFixture;
+import app.fixture.post.PostGenerator;
+import app.fixture.user.JpaUserFixture;
+import app.fixture.user.UserGenerator;
 import app.modules.user.User;
 import app.modules.user.UserFacade;
 import app.modules.user.infrastructure.UserEntity;

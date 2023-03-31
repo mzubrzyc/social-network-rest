@@ -1,4 +1,4 @@
-package app.fixter.user;
+package app.fixture.user;
 
 import app.modules.user.User;
 import java.util.List;

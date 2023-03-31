@@ -2,10 +2,10 @@ package app.modules.user.post.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import app.fixter.post.JpaPostFixture;
-import app.fixter.post.PostGenerator;
-import app.fixter.user.JpaUserFixture;
-import app.fixter.user.UserGenerator;
+import app.fixture.post.JpaPostFixture;
+import app.fixture.post.PostGenerator;
+import app.fixture.user.JpaUserFixture;
+import app.fixture.user.UserGenerator;
 import app.modules.user.User;
 import app.modules.user.infrastructure.UserEntity;
 import app.modules.user.infrastructure.UserEntityMapper;

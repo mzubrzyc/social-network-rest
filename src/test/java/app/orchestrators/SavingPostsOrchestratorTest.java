@@ -3,7 +3,7 @@ package app.orchestrators;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import app.dto.UserLoginPostContentDto;
-import app.fixter.user.JpaUserFixture;
+import app.fixture.user.JpaUserFixture;
 import app.modules.user.User;
 import app.modules.user.infrastructure.UserEntityMapper;
 import app.modules.user.post.domain.Post;

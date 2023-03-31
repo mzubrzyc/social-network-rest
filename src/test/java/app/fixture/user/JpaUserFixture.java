@@ -1,4 +1,4 @@
-package app.fixter.user;
+package app.fixture.user;
 
 import app.modules.user.infrastructure.JpaUserRepository;
 import app.modules.user.infrastructure.UserEntity;
