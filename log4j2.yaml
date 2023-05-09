@@ -18,8 +18,7 @@ Configuration:
       AppenderRef:
         ref: Console_Appender
     Logger:
-      -
-        name: app
+      - name: app
         level: info
         additivity: false
         AppenderRef:
