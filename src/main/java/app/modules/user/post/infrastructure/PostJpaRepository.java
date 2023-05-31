@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface JpaPostRepository extends JpaRepository<PostEntity, Long> {
+public interface PostJpaRepository extends JpaRepository<PostEntity, Long> {
 
     @Query(value = "FROM PostEntity p order by p.postViews desc, p.postId")
     List<PostEntity> findPostsWithMostViewsLimitedTo(Pageable pageable);

@@ -9,24 +9,24 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 @AllArgsConstructor
-public class JpaPostRetrievingAdapter implements PostRetrievingPort {
+public class PostRetrievingAdapter implements PostRetrievingPort {
 
-    JpaPostRepository jpaPostRepository;
+    PostJpaRepository postJpaRepository;
 
     @Override
     public List<Post> getAllPosts() {
-        return PostEntityMapper.fromPostEntity(jpaPostRepository.findAll());
+        return PostEntityMapper.fromPostEntity(postJpaRepository.findAll());
     }
 
     @Override
     public Optional<Post> getPostById(long postId) {
-        Optional<PostEntity> optionalPost = jpaPostRepository.findById(postId);
+        Optional<PostEntity> optionalPost = postJpaRepository.findById(postId);
         return optionalPost.map(PostEntityMapper::fromPostEntity);
     }
 
     @Override
     public List<Post> getMostViewedPostsLimitTo(int numberOfResults) {
         Pageable pageable = PageRequest.of(0, numberOfResults);
-        return PostEntityMapper.fromPostEntity(jpaPostRepository.findPostsWithMostViewsLimitedTo(pageable));
+        return PostEntityMapper.fromPostEntity(postJpaRepository.findPostsWithMostViewsLimitedTo(pageable));
     }
 }

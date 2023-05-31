@@ -5,18 +5,18 @@ import app.modules.user.UserModificationPort;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class JpaUserModificationAdapter implements UserModificationPort {
+public class UserModificationAdapter implements UserModificationPort {
 
-    JpaUserRepository jpaUserRepository;
+    UserJpaRepository userJpaRepository;
 
     @Override
     public void saveNewUser(User user) throws Exception {
-        jpaUserRepository.saveAndFlush(UserEntityMapper.toUserEntity(user));
+        userJpaRepository.saveAndFlush(UserEntityMapper.toUserEntity(user));
     }
 
     @Override
     public void updateUser(User user) throws Exception {
-        jpaUserRepository.updateUser(
+        userJpaRepository.updateUser(
             user.getUserId(),
             user.getName(),
             user.getSurname(),
@@ -26,6 +26,6 @@ public class JpaUserModificationAdapter implements UserModificationPort {
 
     @Override
     public void deleteUser(User user) throws Exception {
-        jpaUserRepository.deleteById(user.getUserId());
+        userJpaRepository.deleteById(user.getUserId());
     }
 }

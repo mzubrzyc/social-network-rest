@@ -7,29 +7,29 @@ import java.util.Optional;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class JpaUserRetrievingAdapter implements UserRetrievingPort {
+public class UserRetrievingAdapter implements UserRetrievingPort {
 
-    JpaUserRepository jpaUserRepository;
+    UserJpaRepository userJpaRepository;
 
     @Override
     public List<User> getAllUsers() {
-        return UserEntityMapper.fromUserEntity(jpaUserRepository.findAll());
+        return UserEntityMapper.fromUserEntity(userJpaRepository.findAll());
     }
 
     @Override
     public Optional<User> getUserByLogin(String login) {
-        Optional<UserEntity> optionalUserEntity = jpaUserRepository.findByLogin(login);
+        Optional<UserEntity> optionalUserEntity = userJpaRepository.findByLogin(login);
         return optionalUserEntity.map(UserEntityMapper::fromUserEntity);
     }
 
     @Override
     public List<User> getUsersByIds(List<Long> distinctUserIds) {
-        return UserEntityMapper.fromUserEntity(jpaUserRepository.findAllByUserIdIn(distinctUserIds));
+        return UserEntityMapper.fromUserEntity(userJpaRepository.findAllByUserIdIn(distinctUserIds));
     }
 
     @Override
     public Optional<User> getUserById(long userId) {
-        Optional<UserEntity> userEntityByUserId = jpaUserRepository.findUserEntityByUserId(userId);
+        Optional<UserEntity> userEntityByUserId = userJpaRepository.findUserEntityByUserId(userId);
         return userEntityByUserId.map(UserEntityMapper::fromUserEntity);
     }
 }

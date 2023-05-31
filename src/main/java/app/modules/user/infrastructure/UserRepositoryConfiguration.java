@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Configuration;
 public class UserRepositoryConfiguration {
 
     @Bean
-    public JpaUserRetrievingAdapter jpaUserRetrievingAdapter(JpaUserRepository jpaUserRepository) {
-        return new JpaUserRetrievingAdapter(jpaUserRepository);
+    public UserRetrievingAdapter jpaUserRetrievingAdapter(UserJpaRepository userJpaRepository) {
+        return new UserRetrievingAdapter(userJpaRepository);
     }
 
     @Bean
-    public JpaUserModificationAdapter jpaUserModificationAdapter(JpaUserRepository jpaUserRepository) {
-        return new JpaUserModificationAdapter(jpaUserRepository);
+    public UserModificationAdapter jpaUserModificationAdapter(UserJpaRepository userJpaRepository) {
+        return new UserModificationAdapter(userJpaRepository);
     }
 
 }

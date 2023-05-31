@@ -5,13 +5,13 @@ import app.modules.user.post.domain.PostModificationPort;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class JpaPostModificationAdapter implements PostModificationPort {
+public class PostModificationAdapter implements PostModificationPort {
 
-    JpaPostRepository jpaPostRepository;
+    PostJpaRepository postJpaRepository;
 
     @Override
     public void savePost(Post post) throws Exception {
-        jpaPostRepository.saveAndFlush(PostEntityMapper.toPostEntity(post));
+        postJpaRepository.saveAndFlush(PostEntityMapper.toPostEntity(post));
     }
 
     @Override

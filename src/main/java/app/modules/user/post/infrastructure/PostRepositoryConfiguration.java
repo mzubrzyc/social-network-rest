@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Configuration;
 public class PostRepositoryConfiguration {
 
     @Bean
-    public JpaPostRetrievingAdapter jpaPostRetrievingAdapter(JpaPostRepository jpaPostRepository) {
-        return new JpaPostRetrievingAdapter(jpaPostRepository);
+    public PostRetrievingAdapter jpaPostRetrievingAdapter(PostJpaRepository postJpaRepository) {
+        return new PostRetrievingAdapter(postJpaRepository);
     }
 
     @Bean
-    public JpaPostModificationAdapter jpaPostModificationAdapter(JpaPostRepository jpaPostRepository) {
-        return new JpaPostModificationAdapter(jpaPostRepository);
+    public PostModificationAdapter jpaPostModificationAdapter(PostJpaRepository postJpaRepository) {
+        return new PostModificationAdapter(postJpaRepository);
     }
 
 }
